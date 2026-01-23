@@ -161,6 +161,8 @@ export default function ProductModal({
         height: data?.height,
         discount: data?.discount,
         stock_quantity: data?.stock_quantity,
+        category: data?.category,
+        subcategory: data?.subcategory,
         ...(productForm
           ? {}
           : {
