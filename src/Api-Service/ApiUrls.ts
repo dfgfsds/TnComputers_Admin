@@ -1,5 +1,5 @@
-//export const baseUrl = 'https://ecomapi.ftdigitalsolutions.org'; // live API
-export const baseUrl = 'https://test-ecomapi.justvy.in'; // test API
+export const baseUrl = 'https://ecomapi.ftdigitalsolutions.org'; // live API
+// export const baseUrl = 'https://test-ecomapi.justvy.in'; // test API
 
 const multiVendor = `${baseUrl}/create_multivendor_users/`;
 // const multiVendorLogin=`${baseUrl}/multivendor_user_login/`;
