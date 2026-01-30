@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { useEffect, useState } from "react";
@@ -8,6 +8,7 @@ import SingleImageUpload from "../products/SingleImageUpload";
 import { useParams } from "react-router-dom";
 import { InvalidateQueryFilters, useQueryClient } from "@tanstack/react-query";
 import Button from "../Button";
+import ReactQuill from "react-quill";
 
 function BlogModal({ open, close, userId, editData }: any) {
     if (!open) return null;
@@ -28,6 +29,7 @@ function BlogModal({ open, close, userId, editData }: any) {
         handleSubmit,
         reset,
         setValue,
+        control,
         formState: { errors },
     } = useForm({ resolver: yupResolver(blogSchema) });
 
@@ -121,13 +123,30 @@ function BlogModal({ open, close, userId, editData }: any) {
                             <p className="text-red-500 text-sm">{errors.description?.message}</p>
                         </div>
 
-                        <div>
+                        {/* <div>
                             <label className="block text-sm font-medium text-gray-700">
                                 Content
                             </label>
                             <textarea {...register("content")}
                                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
 
+                            />
+                            <p className="text-red-500 text-sm">{errors.content?.message}</p>
+                        </div> */}
+                         <div>
+                            <label className="block text-sm font-medium text-gray-700">
+                                Content
+                            </label>
+                            <Controller
+                                name="content"
+                                control={control}
+                                render={({ field }) => (
+                                    <ReactQuill
+                                        theme="snow"
+                                        value={field.value || ""}
+                                        onChange={field.onChange}
+                                    />
+                                )}
                             />
                             <p className="text-red-500 text-sm">{errors.content?.message}</p>
                         </div>
