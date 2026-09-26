@@ -136,7 +136,7 @@ function Blogs({ userId }: any) {
 
             <div className="p-5">
               <div className="flex items-center text-sm text-gray-500 mb-1">
-                <span className="text-green-600 font-medium capitalize">{blog?.title}</span>
+                <span className="text-purple-600 font-medium capitalize">{blog?.title}</span>
                 <span className="mx-2">•</span>
                 <span>
                   {new Date(blog?.created_at).toLocaleDateString("en-US", {
@@ -147,7 +147,7 @@ function Blogs({ userId }: any) {
                 </span>
               </div>
 
-              <h3 className="text-xl line-clamp-1 font-semibold text-gray-800 hover:text-green-700 cursor-pointer">
+              <h3 className="text-xl line-clamp-1 font-semibold text-gray-800 hover:text-purple-600 cursor-pointer">
                 {blog?.subtitle}
               </h3>
               <p className="text-gray-600 mt-2 text-sm line-clamp-2">{blog?.description}</p>
