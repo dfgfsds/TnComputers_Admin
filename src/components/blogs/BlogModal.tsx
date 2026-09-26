@@ -161,13 +161,13 @@ function BlogModal({ open, close, userId, editData }: any) {
                 onClick={(e) => e.stopPropagation()}
             >
                 {/* Theme Gradient Accent Bar */}
-                <div className="h-1.5 w-full bg-gradient-to-r from-[#e2ba2b] via-[#d4a81e] to-[#fcd34d] flex-shrink-0" />
+                <div className="h-1.5 w-full bg-gradient-to-r from-[#9333ea] via-[#a855f7] to-[#c084fc] flex-shrink-0" />
 
                 {/* Header */}
                 <div className="sticky top-0 z-20 bg-white/95 backdrop-blur-md px-8 py-5 border-b border-[#edf2f7] flex items-center justify-between flex-shrink-0">
                     <div>
                         <div className="flex items-center gap-2.5">
-                            <span className="w-2.5 h-2.5 rounded-full bg-[#e2ba2b] shadow-sm shadow-[#e2ba2b]/50"></span>
+                            <span className="w-2.5 h-2.5 rounded-full bg-[#9333ea] shadow-sm shadow-[#9333ea]/50"></span>
                             <h2 className="text-2xl font-bold text-[#0f172a] tracking-tight">
                                 {editData ? "Edit Blog Post" : "Create New Blog"}
                             </h2>
@@ -179,7 +179,7 @@ function BlogModal({ open, close, userId, editData }: any) {
                     <button
                         type="button"
                         onClick={close}
-                        className="w-10 h-10 rounded-2xl bg-[#f1f5f9] hover:bg-amber-50 text-[#64748b] hover:text-[#e2ba2b] flex items-center justify-center transition-colors text-xl font-medium"
+                        className="w-10 h-10 rounded-2xl bg-[#f1f5f9] hover:bg-purple-50 text-[#64748b] hover:text-[#9333ea] flex items-center justify-center transition-colors text-xl font-medium"
                     >
                         ✕
                     </button>
@@ -196,10 +196,10 @@ function BlogModal({ open, close, userId, editData }: any) {
                         <div className="bg-[#f8fafc] rounded-[24px] p-6 border border-[#e5e7eb] space-y-5">
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-2">
-                                    <span className="w-7 h-7 rounded-xl bg-[#e2ba2b] text-white text-xs flex items-center justify-center font-bold shadow-sm shadow-[#e2ba2b]/30">1</span>
+                                    <span className="w-7 h-7 rounded-xl bg-[#9333ea] text-white text-xs flex items-center justify-center font-bold shadow-sm shadow-[#9333ea]/30">1</span>
                                     <h3 className="text-base font-bold text-[#0f172a]">Basic Information</h3>
                                 </div>
-                                <span className="text-xs font-semibold text-amber-800 uppercase tracking-wider bg-amber-50 px-2.5 py-1 rounded-full border border-amber-200/60">Required Info</span>
+                                <span className="text-xs font-semibold text-purple-700 uppercase tracking-wider bg-purple-50 px-2.5 py-1 rounded-full border border-purple-200/60">Required Info</span>
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -211,7 +211,7 @@ function BlogModal({ open, close, userId, editData }: any) {
                                     <input
                                         {...register("title")}
                                         placeholder="Enter engaging blog title..."
-                                        className="w-full h-11 rounded-xl border border-[#dbe2ea] px-4 text-sm text-[#0f172a] bg-white outline-none focus:border-[#e2ba2b] focus:ring-1 focus:ring-[#e2ba2b] transition"
+                                        className="w-full h-11 rounded-xl border border-[#dbe2ea] px-4 text-sm text-[#0f172a] bg-white outline-none focus:border-[#9333ea] focus:ring-1 focus:ring-[#9333ea] transition"
                                     />
                                     {errors.title?.message && (
                                         <p className="text-red-500 text-xs mt-1 font-medium">{String(errors.title.message)}</p>
@@ -226,7 +226,7 @@ function BlogModal({ open, close, userId, editData }: any) {
                                     <input
                                         {...register("subtitle")}
                                         placeholder="Brief subtitle or tagline..."
-                                        className="w-full h-11 rounded-xl border border-[#dbe2ea] px-4 text-sm text-[#0f172a] bg-white outline-none focus:border-[#e2ba2b] focus:ring-1 focus:ring-[#e2ba2b] transition"
+                                        className="w-full h-11 rounded-xl border border-[#dbe2ea] px-4 text-sm text-[#0f172a] bg-white outline-none focus:border-[#9333ea] focus:ring-1 focus:ring-[#9333ea] transition"
                                     />
                                     {errors.subtitle?.message && (
                                         <p className="text-red-500 text-xs mt-1 font-medium">{String(errors.subtitle.message)}</p>
@@ -241,7 +241,7 @@ function BlogModal({ open, close, userId, editData }: any) {
                                     <input
                                         {...register("author")}
                                         placeholder="e.g. John Doe"
-                                        className="w-full h-11 rounded-xl border border-[#dbe2ea] px-4 text-sm text-[#0f172a] bg-white outline-none focus:border-[#e2ba2b] focus:ring-1 focus:ring-[#e2ba2b] transition"
+                                        className="w-full h-11 rounded-xl border border-[#dbe2ea] px-4 text-sm text-[#0f172a] bg-white outline-none focus:border-[#9333ea] focus:ring-1 focus:ring-[#9333ea] transition"
                                     />
                                     {errors.author?.message && (
                                         <p className="text-red-500 text-xs mt-1 font-medium">{String(errors.author.message)}</p>
@@ -258,7 +258,7 @@ function BlogModal({ open, close, userId, editData }: any) {
                                         <input
                                             {...register("url_slug")}
                                             placeholder="my-awesome-blog-post"
-                                            className="w-full h-11 rounded-xl border border-[#dbe2ea] pl-16 pr-4 text-sm text-[#0f172a] bg-white outline-none focus:border-[#e2ba2b] focus:ring-1 focus:ring-[#e2ba2b] transition"
+                                            className="w-full h-11 rounded-xl border border-[#dbe2ea] pl-16 pr-4 text-sm text-[#0f172a] bg-white outline-none focus:border-[#9333ea] focus:ring-1 focus:ring-[#9333ea] transition"
                                         />
                                     </div>
                                     {errors.url_slug?.message && (
@@ -272,10 +272,10 @@ function BlogModal({ open, close, userId, editData }: any) {
                         <div className="bg-[#f8fafc] rounded-[24px] p-6 border border-[#e5e7eb] space-y-4">
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-2">
-                                    <span className="w-7 h-7 rounded-xl bg-[#e2ba2b] text-white text-xs flex items-center justify-center font-bold shadow-sm shadow-[#e2ba2b]/30">2</span>
+                                    <span className="w-7 h-7 rounded-xl bg-[#9333ea] text-white text-xs flex items-center justify-center font-bold shadow-sm shadow-[#9333ea]/30">2</span>
                                     <h3 className="text-base font-bold text-[#0f172a]">Cover / Banner Image</h3>
                                 </div>
-                                <span className="text-xs font-semibold text-amber-800 uppercase tracking-wider bg-amber-50 px-2.5 py-1 rounded-full border border-amber-200/60">Media</span>
+                                <span className="text-xs font-semibold text-purple-700 uppercase tracking-wider bg-purple-50 px-2.5 py-1 rounded-full border border-purple-200/60">Media</span>
                             </div>
                             <div className="bg-white p-4 rounded-2xl border border-[#edf2f7]">
                                 <SingleImageUpload images={images} onChange={setImages} />
@@ -286,10 +286,10 @@ function BlogModal({ open, close, userId, editData }: any) {
                         <div className="bg-[#f8fafc] rounded-[24px] p-6 border border-[#e5e7eb] space-y-5">
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-2">
-                                    <span className="w-7 h-7 rounded-xl bg-[#e2ba2b] text-white text-xs flex items-center justify-center font-bold shadow-sm shadow-[#e2ba2b]/30">3</span>
+                                    <span className="w-7 h-7 rounded-xl bg-[#9333ea] text-white text-xs flex items-center justify-center font-bold shadow-sm shadow-[#9333ea]/30">3</span>
                                     <h3 className="text-base font-bold text-[#0f172a]">Blog Content</h3>
                                 </div>
-                                <span className="text-xs font-semibold text-amber-800 uppercase tracking-wider bg-amber-50 px-2.5 py-1 rounded-full border border-amber-200/60">Rich Text</span>
+                                <span className="text-xs font-semibold text-purple-700 uppercase tracking-wider bg-purple-50 px-2.5 py-1 rounded-full border border-purple-200/60">Rich Text</span>
                             </div>
 
                             {/* Short Description */}
@@ -349,10 +349,10 @@ function BlogModal({ open, close, userId, editData }: any) {
                         <div className="bg-[#f8fafc] rounded-[24px] p-6 border border-[#e5e7eb] space-y-5">
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-2">
-                                    <span className="w-7 h-7 rounded-xl bg-gradient-to-r from-[#e2ba2b] to-[#d4a81e] text-white text-xs flex items-center justify-center font-bold shadow-sm shadow-[#e2ba2b]/30">4</span>
+                                    <span className="w-7 h-7 rounded-xl bg-gradient-to-r from-[#9333ea] to-[#7e22ce] text-white text-xs flex items-center justify-center font-bold shadow-sm shadow-purple-500/30">4</span>
                                     <h3 className="text-base font-bold text-[#0f172a]">SEO & Meta Configuration</h3>
                                 </div>
-                                <span className="text-xs px-2.5 py-1 rounded-full bg-amber-50 text-amber-800 font-semibold border border-amber-200/60">Search Engine Optimization</span>
+                                <span className="text-xs px-2.5 py-1 rounded-full bg-purple-50 text-purple-700 font-semibold border border-purple-200/60">Search Engine Optimization</span>
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -364,7 +364,7 @@ function BlogModal({ open, close, userId, editData }: any) {
                                     <input
                                         {...register("meta_title")}
                                         placeholder="e.g. 10 Best Photography Tips | Brand Name"
-                                        className="w-full h-11 rounded-xl border border-[#dbe2ea] px-4 text-sm text-[#0f172a] bg-white outline-none focus:border-[#e2ba2b] focus:ring-1 focus:ring-[#e2ba2b] transition"
+                                        className="w-full h-11 rounded-xl border border-[#dbe2ea] px-4 text-sm text-[#0f172a] bg-white outline-none focus:border-[#9333ea] focus:ring-1 focus:ring-[#9333ea] transition"
                                     />
                                 </div>
 
@@ -376,7 +376,7 @@ function BlogModal({ open, close, userId, editData }: any) {
                                     <input
                                         {...register("canonical_tag")}
                                         placeholder="https://example.com/blogs/blog-slug"
-                                        className="w-full h-11 rounded-xl border border-[#dbe2ea] px-4 text-sm text-[#0f172a] bg-white outline-none focus:border-[#e2ba2b] focus:ring-1 focus:ring-[#e2ba2b] transition"
+                                        className="w-full h-11 rounded-xl border border-[#dbe2ea] px-4 text-sm text-[#0f172a] bg-white outline-none focus:border-[#9333ea] focus:ring-1 focus:ring-[#9333ea] transition"
                                     />
                                 </div>
 
@@ -389,7 +389,7 @@ function BlogModal({ open, close, userId, editData }: any) {
                                         {...register("meta_description")}
                                         rows={2}
                                         placeholder="Short summary for search results (recommended under 160 characters)..."
-                                        className="w-full rounded-xl border border-[#dbe2ea] p-3 text-sm text-[#0f172a] bg-white outline-none focus:border-[#e2ba2b] focus:ring-1 focus:ring-[#e2ba2b] transition resize-none"
+                                        className="w-full rounded-xl border border-[#dbe2ea] p-3 text-sm text-[#0f172a] bg-white outline-none focus:border-[#9333ea] focus:ring-1 focus:ring-[#9333ea] transition resize-none"
                                     />
                                 </div>
 
@@ -401,7 +401,7 @@ function BlogModal({ open, close, userId, editData }: any) {
                                     <input
                                         {...register("robots_tag")}
                                         placeholder="e.g. index, follow"
-                                        className="w-full h-11 rounded-xl border border-[#dbe2ea] px-4 text-sm text-[#0f172a] bg-white outline-none focus:border-[#e2ba2b] focus:ring-1 focus:ring-[#e2ba2b] transition"
+                                        className="w-full h-11 rounded-xl border border-[#dbe2ea] px-4 text-sm text-[#0f172a] bg-white outline-none focus:border-[#9333ea] focus:ring-1 focus:ring-[#9333ea] transition"
                                     />
                                 </div>
 
@@ -413,7 +413,7 @@ function BlogModal({ open, close, userId, editData }: any) {
                                     <input
                                         {...register("image_src_tags")}
                                         placeholder="e.g. https://.../preview.jpg"
-                                        className="w-full h-11 rounded-xl border border-[#dbe2ea] px-4 text-sm text-[#0f172a] bg-white outline-none focus:border-[#e2ba2b] focus:ring-1 focus:ring-[#e2ba2b] transition"
+                                        className="w-full h-11 rounded-xl border border-[#dbe2ea] px-4 text-sm text-[#0f172a] bg-white outline-none focus:border-[#9333ea] focus:ring-1 focus:ring-[#9333ea] transition"
                                     />
                                 </div>
 
@@ -426,7 +426,7 @@ function BlogModal({ open, close, userId, editData }: any) {
                                         {...register("url_description")}
                                         rows={2}
                                         placeholder="Detailed description for the URL structure..."
-                                        className="w-full rounded-xl border border-[#dbe2ea] p-3 text-sm text-[#0f172a] bg-white outline-none focus:border-[#e2ba2b] focus:ring-1 focus:ring-[#e2ba2b] transition resize-none"
+                                        className="w-full rounded-xl border border-[#dbe2ea] p-3 text-sm text-[#0f172a] bg-white outline-none focus:border-[#9333ea] focus:ring-1 focus:ring-[#9333ea] transition resize-none"
                                     />
                                 </div>
 
@@ -439,7 +439,7 @@ function BlogModal({ open, close, userId, editData }: any) {
                                         {...register("og_tags")}
                                         rows={3}
                                         placeholder="og:title, og:description, og:image..."
-                                        className="w-full rounded-xl border border-[#dbe2ea] p-3 text-sm text-[#0f172a] bg-white outline-none focus:border-[#e2ba2b] focus:ring-1 focus:ring-[#e2ba2b] transition resize-none"
+                                        className="w-full rounded-xl border border-[#dbe2ea] p-3 text-sm text-[#0f172a] bg-white outline-none focus:border-[#9333ea] focus:ring-1 focus:ring-[#9333ea] transition resize-none"
                                     />
                                 </div>
 
@@ -452,7 +452,7 @@ function BlogModal({ open, close, userId, editData }: any) {
                                         {...register("twitter_tags")}
                                         rows={3}
                                         placeholder="twitter:card, twitter:title, twitter:image..."
-                                        className="w-full rounded-xl border border-[#dbe2ea] p-3 text-sm text-[#0f172a] bg-white outline-none focus:border-[#e2ba2b] focus:ring-1 focus:ring-[#e2ba2b] transition resize-none"
+                                        className="w-full rounded-xl border border-[#dbe2ea] p-3 text-sm text-[#0f172a] bg-white outline-none focus:border-[#9333ea] focus:ring-1 focus:ring-[#9333ea] transition resize-none"
                                     />
                                 </div>
 
@@ -465,7 +465,7 @@ function BlogModal({ open, close, userId, editData }: any) {
                                         {...register("schema")}
                                         rows={4}
                                         placeholder={`{\n  "@context": "https://schema.org",\n  "@type": "BlogPosting",\n  "headline": "..." \n}`}
-                                        className="w-full rounded-xl border border-[#dbe2ea] p-3 font-mono text-xs text-[#0f172a] bg-white outline-none focus:border-[#e2ba2b] focus:ring-1 focus:ring-[#e2ba2b] transition resize-none"
+                                        className="w-full rounded-xl border border-[#dbe2ea] p-3 font-mono text-xs text-[#0f172a] bg-white outline-none focus:border-[#9333ea] focus:ring-1 focus:ring-[#9333ea] transition resize-none"
                                     />
                                 </div>
                             </div>
@@ -493,7 +493,7 @@ function BlogModal({ open, close, userId, editData }: any) {
                     <button
                         type="submit"
                         form="blog-form"
-                        className="px-8 h-12 rounded-2xl bg-gradient-to-r from-[#e2ba2b] to-[#d4a81e] hover:from-[#d4a81e] hover:to-[#c49e1e] text-white text-sm font-semibold transition shadow-md shadow-[#e2ba2b]/25 hover:shadow-lg hover:shadow-[#e2ba2b]/35 flex items-center gap-2"
+                        className="px-8 h-12 rounded-2xl bg-gradient-to-r from-[#9333ea] to-[#7e22ce] hover:from-[#7e22ce] hover:to-[#6b21a8] text-white text-sm font-semibold transition shadow-md shadow-purple-500/25 hover:shadow-lg hover:shadow-purple-500/35 flex items-center gap-2"
                     >
                         <span>{editData ? "Update Blog" : "Publish Blog"}</span>
                         <span>→</span>
