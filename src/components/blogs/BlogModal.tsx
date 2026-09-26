@@ -1,14 +1,99 @@
 
 
+import React, { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-import { useEffect, useState } from "react";
 import { postBlogsApi, putBlogsApi } from "../../Api-Service/Apis";
 import SingleImageUpload from "../../components/products/SingleImageUpload";
 import { useParams } from "react-router-dom";
 import { InvalidateQueryFilters, useQueryClient } from "@tanstack/react-query";
 import ReactQuill from "react-quill";
+
+interface TagsInputProps {
+    label: string;
+    placeholder: string;
+    helperText?: string;
+    tags: string[];
+    onChange: (tags: string[]) => void;
+}
+
+function TagsInput({ label, placeholder, helperText, tags = [], onChange }: TagsInputProps) {
+    const [inputValue, setInputValue] = useState("");
+
+    const handleAddTag = (text: string) => {
+        const trimmed = text.trim();
+        if (!trimmed) return;
+        const newItems = trimmed
+            .split(",")
+            .map((t) => t.trim())
+            .filter((t) => t.length > 0 && !tags.includes(t));
+
+        if (newItems.length > 0) {
+            onChange([...tags, ...newItems]);
+        }
+        setInputValue("");
+    };
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Enter" || e.key === ",") {
+            e.preventDefault();
+            handleAddTag(inputValue);
+        } else if (e.key === "Backspace" && !inputValue && tags.length > 0) {
+            onChange(tags.slice(0, -1));
+        }
+    };
+
+    const handleRemoveTag = (indexToRemove: number) => {
+        onChange(tags.filter((_, idx) => idx !== indexToRemove));
+    };
+
+    return (
+        <div className="space-y-1.5">
+            <div className="flex items-center justify-between">
+                <label className="block text-sm font-semibold text-[#0f172a]">
+                    {label}
+                </label>
+                {helperText && (
+                    <span className="text-xs text-[#64748b]">{helperText}</span>
+                )}
+            </div>
+            <div className="min-h-[44px] p-2 rounded-xl border border-[#dbe2ea] bg-white flex flex-wrap items-center gap-1.5 focus-within:border-[#9333ea] focus-within:ring-1 focus-within:ring-[#9333ea] transition">
+                {tags.map((tag, idx) => (
+                    <span
+                        key={idx}
+                        className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium bg-purple-50 text-[#7e22ce] border border-purple-200/70 shadow-sm animate-in fade-in zoom-in-95 duration-150"
+                    >
+                        <span>{tag}</span>
+                        <button
+                            type="button"
+                            onClick={() => handleRemoveTag(idx)}
+                            className="w-3.5 h-3.5 rounded-full hover:bg-purple-200/80 inline-flex items-center justify-center text-purple-600 hover:text-purple-900 transition text-[10px] leading-none"
+                        >
+                            ✕
+                        </button>
+                    </span>
+                ))}
+                <input
+                    type="text"
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                    onBlur={() => {
+                        if (inputValue.trim()) {
+                            handleAddTag(inputValue);
+                        }
+                    }}
+                    placeholder={tags.length === 0 ? placeholder : "Add more..."}
+                    className="flex-1 min-w-[120px] text-sm text-[#0f172a] bg-transparent outline-none px-2 py-0.5 placeholder:text-[#94a3b8]"
+                />
+            </div>
+            <p className="text-[11px] text-[#94a3b8]">
+                Press <span className="font-semibold text-purple-600">Enter</span> or <span className="font-semibold text-purple-600">Comma (,)</span> to add
+            </p>
+        </div>
+    );
+}
 
 function BlogModal({ open, close, userId, editData }: any) {
     if (!open) return null;
@@ -26,6 +111,8 @@ function BlogModal({ open, close, userId, editData }: any) {
         url_slug: Yup.string().nullable(),
         meta_title: Yup.string().nullable(),
         meta_description: Yup.string().nullable(),
+        meta_tags: Yup.array().of(Yup.string()).nullable(),
+        meta_keywords: Yup.array().of(Yup.string()).nullable(),
         canonical_tag: Yup.string().nullable(),
         robots_tag: Yup.string().nullable(),
         url_description: Yup.string().nullable(),
@@ -41,6 +128,7 @@ function BlogModal({ open, close, userId, editData }: any) {
         reset,
         control,
         setValue,
+        watch,
         formState: { errors },
     } = useForm({
         resolver: yupResolver(blogSchema),
@@ -53,6 +141,8 @@ function BlogModal({ open, close, userId, editData }: any) {
             url_slug: "",
             meta_title: "",
             meta_description: "",
+            meta_tags: [] as string[],
+            meta_keywords: [] as string[],
             canonical_tag: "",
             robots_tag: "",
             url_description: "",
@@ -62,6 +152,9 @@ function BlogModal({ open, close, userId, editData }: any) {
             schema: "",
         },
     });
+
+    const metaTags = watch("meta_tags") || [];
+    const metaKeywords = watch("meta_keywords") || [];
 
     useEffect(() => {
         if (editData) {
@@ -73,6 +166,8 @@ function BlogModal({ open, close, userId, editData }: any) {
             setValue("url_slug", editData?.url_slug || "");
             setValue("meta_title", editData?.meta_title || "");
             setValue("meta_description", editData?.meta_description || "");
+            setValue("meta_tags", Array.isArray(editData?.meta_tags) ? editData.meta_tags : []);
+            setValue("meta_keywords", Array.isArray(editData?.meta_keywords) ? editData.meta_keywords : []);
             setValue("canonical_tag", editData?.canonical_tag || "");
             setValue("robots_tag", editData?.robots_tag || "");
             setValue("url_description", editData?.url_description || "");
@@ -96,6 +191,8 @@ function BlogModal({ open, close, userId, editData }: any) {
                 url_slug: "",
                 meta_title: "",
                 meta_description: "",
+                meta_tags: [],
+                meta_keywords: [],
                 canonical_tag: "",
                 robots_tag: "",
                 url_description: "",
@@ -114,6 +211,8 @@ function BlogModal({ open, close, userId, editData }: any) {
             setApiError("");
             const payload = {
                 ...data,
+                meta_tags: Array.isArray(data?.meta_tags) ? data.meta_tags : [],
+                meta_keywords: Array.isArray(data?.meta_keywords) ? data.meta_keywords : [],
                 banner_url: images[0]?.url || "",
                 vendor: id,
                 user: userId,
@@ -390,6 +489,26 @@ function BlogModal({ open, close, userId, editData }: any) {
                                         rows={2}
                                         placeholder="Short summary for search results (recommended under 160 characters)..."
                                         className="w-full rounded-xl border border-[#dbe2ea] p-3 text-sm text-[#0f172a] bg-white outline-none focus:border-[#9333ea] focus:ring-1 focus:ring-[#9333ea] transition resize-none"
+                                    />
+                                </div>
+
+                                {/* Meta Tags */}
+                                <div>
+                                    <TagsInput
+                                        label="Meta Tags"
+                                        placeholder="Add tag (e.g. technology, photography)..."
+                                        tags={metaTags}
+                                        onChange={(newTags) => setValue("meta_tags", newTags, { shouldValidate: true, shouldDirty: true })}
+                                    />
+                                </div>
+
+                                {/* Meta Keywords */}
+                                <div>
+                                    <TagsInput
+                                        label="Meta Keywords"
+                                        placeholder="Add keyword (e.g. camera repair, best lenses)..."
+                                        tags={metaKeywords}
+                                        onChange={(newKeywords) => setValue("meta_keywords", newKeywords, { shouldValidate: true, shouldDirty: true })}
                                     />
                                 </div>
 
